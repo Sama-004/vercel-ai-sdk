@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ai-sdk/mistral": "^0.0.20",
     "@ai-sdk/openai": "^0.0.34",
     "ai": "^3.2.15",
     "class-variance-authority": "^0.7.0",
