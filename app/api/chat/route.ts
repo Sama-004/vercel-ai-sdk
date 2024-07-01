@@ -1,7 +1,5 @@
-import { openai } from "@ai-sdk/openai";
 import { mistral } from "@ai-sdk/mistral";
 import { streamText } from "ai";
-import { generateText } from "ai";
 import { NextResponse } from "next/server";
 
 // Allow streaming responses up to 30 seconds
@@ -14,11 +12,9 @@ export async function POST(req: Request) {
 
   console.log("Recieved message:", messageContent);
 
-  const result = await generateText({
-    model: mistral("open-mistral-7b"),
+  const result = await streamText({
+    model: mistral("mistral-large-latest"),
     prompt: messageContent,
   });
-
-  console.log(result.text);
-  return NextResponse.json(result.text);
+  return result.toAIStreamResponse();
 }
