@@ -8,20 +8,17 @@ import { NextResponse } from "next/server";
 export const maxDuration = 30;
 
 export async function POST(req: Request) {
-  //   const { messages } = await req.json();
   const body = await req.json();
 
-  const message = body.messages;
+  const messageContent = body.messages[0].content;
 
-  console.log("Recieved message:", message);
+  console.log("Recieved message:", messageContent);
 
   const result = await generateText({
     model: mistral("open-mistral-7b"),
-    prompt: "Tell me what is arch linux",
+    prompt: messageContent,
   });
 
   console.log(result.text);
   return NextResponse.json(result.text);
-  //   return NextResponse.json(result.text);
-  //   return NextResponse.json(text);
 }
