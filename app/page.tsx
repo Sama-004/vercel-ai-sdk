@@ -1,12 +1,25 @@
 "use client";
 
 import { useChat } from "ai/react";
+import { useEffect, useState } from "react";
 
 export default function Chat() {
   const { messages, input, handleInputChange, handleSubmit } = useChat();
+  const [previousMessages, setPreviousMessages] = useState([]);
+  useEffect(() => {
+    async function fetchMessages() {
+      const response = await fetch(`/api/chat`);
+      const data = await response.json();
+      setPreviousMessages(data);
+    }
+    fetchMessages();
+  }, []);
+
+  const allMessages = [...previousMessages, ...messages];
+
   return (
     <div className="flex flex-col w-full max-w-md py-24 mx-auto">
-      {messages.map((m) => (
+      {allMessages.map((m) => (
         <div
           key={m.id}
           className={`whitespace-pre-wrap mb-5 border p-2 ${

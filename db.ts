@@ -3,8 +3,8 @@ import { open } from "sqlite";
 
 async function openDB() {
   return open({
-    filename: "./chat.db",
     driver: sqlite3.Database,
+    filename: "./chat.db",
   });
 }
 
