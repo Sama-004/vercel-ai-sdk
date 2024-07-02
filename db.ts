@@ -13,6 +13,7 @@ export async function setupDatabase() {
   await db.exec(`
     CREATE TABLE IF NOT EXISTS messages (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
+      session_id TEXT,
       role TEXT,
       content TEXT,
       timestamp DATETIME DEFAULT CURRENT_TIMESTAMP

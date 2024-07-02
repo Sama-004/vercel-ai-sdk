@@ -10,7 +10,7 @@ export default function Chat() {
     async function fetchMessages() {
       const response = await fetch(`/api/chat`);
       const data = await response.json();
-      setPreviousMessages(data);
+      if (data) setPreviousMessages(data);
     }
     fetchMessages();
   }, []);

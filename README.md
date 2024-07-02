@@ -39,6 +39,8 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 Ui changes [NEXT UI]
 Overflow issue
-session management
+~~add sessions~~
 like dislike
 markdown response
+fix database time
+flowchart system design (readme edit)
