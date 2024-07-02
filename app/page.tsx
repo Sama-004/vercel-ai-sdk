@@ -5,11 +5,16 @@ import { useChat } from "ai/react";
 export default function Chat() {
   const { messages, input, handleInputChange, handleSubmit } = useChat();
   return (
-    <div className="flex flex-col w-full max-w-md py-24 mx-auto stretch">
+    <div className="flex flex-col w-full max-w-md py-24 mx-auto">
       {messages.map((m) => (
-        <div key={m.id} className="whitespace-pre-wrap">
-          {m.role === "user" ? "User: " : "AI: "}
-          {m.content}
+        <div
+          key={m.id}
+          className={`whitespace-pre-wrap mb-5 border p-2 ${
+            m.role === "user" ? "ml-auto bg-blue-100" : "mr-auto bg-gray-100"
+          }`}>
+          <div className={m.role === "user" ? "text-right" : ""}>
+            {m.content}
+          </div>
         </div>
       ))}
 
