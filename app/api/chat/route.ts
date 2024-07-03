@@ -76,3 +76,18 @@ export async function GET(req: Request) {
     headers: { "Content-Type": "application/json" },
   }); //return all the messages from the db
 }
+
+// export async function handleFeedback(req: Request) {
+//   const db = await openDB();
+//   const { messageId, feedback } = await req.json();
+
+//   await db.run(
+//     "UPDATE messages SET feedback = ? WHERE id = ?",
+//     feedback,
+//     messageId
+//   );
+
+//   return new Response(JSON.stringify({ success: true }), {
+//     headers: { "Content-Type": "application/json" },
+//   });
+// }

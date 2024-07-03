@@ -16,7 +16,8 @@ export async function setupDatabase() {
       session_id TEXT,
       role TEXT,
       content TEXT,
-      timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+      timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+      feedback TEXT
     )
   `);
 }

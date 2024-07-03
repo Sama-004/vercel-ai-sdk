@@ -37,10 +37,11 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ## TODO
 
-Ui changes [NEXT UI]
-Overflow issue
+~~Ui changes [NEXT UI]~~
+~~Overflow issue~~
 ~~add sessions~~
 like dislike
 markdown response
 fix database time
+stop generating text
 flowchart system design (readme edit)
