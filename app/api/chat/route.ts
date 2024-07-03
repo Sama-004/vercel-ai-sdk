@@ -12,7 +12,7 @@ export async function POST(req: Request) {
   const db = await openDB();
   let sessionId = cookieStore.get("sessionId"); //check for existing cookies
 
-  // if no exisitng cookie is then generate one
+  // if no exisitng cookie is then generate one (new user)
   if (!sessionId || sessionId === null) {
     cookies().delete("sessionId");
     const newSessionId = crypto.randomUUID();
@@ -28,7 +28,7 @@ export async function POST(req: Request) {
 
   console.log("Recieved message:", messageContent);
 
-  sessionId = cookieStore.get("sessionId"); // get the new session id if it is not available by default and stored right now
+  sessionId = cookieStore.get("sessionId"); // get the new session id if it was not available by default and stored previously
 
   await db.run(
     "INSERT INTO messages (session_id, role, content) VALUES (?, ?, ?)",
@@ -41,8 +41,8 @@ export async function POST(req: Request) {
     onFinish: async (event) => {
       console.log(`Generated text: ${event.text}`); // remove this later added now for debugging
       await db.run(
-        "INSERT INTO messages (session_id, role, content) VALUES (?, ?, ?)",
-        [sessionId?.value, "ai", event.text]
+        "INSERT INTO messages (session_id, role, content, feedback) VALUES (?, ?, ?, ?)",
+        [sessionId?.value, "ai", event.text, null]
       );
     },
   });
@@ -68,26 +68,16 @@ export async function GET(req: Request) {
   }
 
   const messages = await db.all(
-    "SELECT * FROM messages WHERE session_id = ? ORDER BY timestamp ASC",
+    "SELECT id, session_id, role, content, feedback, timestamp FROM messages WHERE session_id = ? ORDER BY timestamp ASC",
     sessionId.value
   );
+
+  // const messages = await db.all(
+  //   "SELECT * FROM messages WHERE session_id = ? ORDER BY timestamp ASC",
+  //   sessionId.value
+  // );
 
   return new Response(JSON.stringify(messages), {
     headers: { "Content-Type": "application/json" },
   }); //return all the messages from the db
 }
-
-// export async function handleFeedback(req: Request) {
-//   const db = await openDB();
-//   const { messageId, feedback } = await req.json();
-
-//   await db.run(
-//     "UPDATE messages SET feedback = ? WHERE id = ?",
-//     feedback,
-//     messageId
-//   );
-
-//   return new Response(JSON.stringify({ success: true }), {
-//     headers: { "Content-Type": "application/json" },
-//   });
-// }

@@ -24,7 +24,12 @@ export default function Chat() {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  const allMessages = [...previousMessages, ...messages];
+  const allMessages = [...previousMessages, ...messages].map((m) => ({
+    ...m,
+    feedback: m.feedback || null,
+  }));
+
+  // const allMessages = [...previousMessages, ...messages];
 
   const handleFeedback = async (messageId, feedback) => {
     try {

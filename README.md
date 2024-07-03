@@ -40,7 +40,8 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ~~Ui changes [NEXT UI]~~
 ~~Overflow issue~~
 ~~add sessions~~
-like dislike
+~~like dislike~~
+First response no like dislike on new session. Reloading the page gives it back. Fix this
 markdown response
 fix database time
 stop generating text
