@@ -38,7 +38,3 @@ For users who have used the app before here's how it works
 
 Here's how the feedback works
 ![Feedback](assets/feedback.png)
-
-<br><br>
-
-## Demo Video
