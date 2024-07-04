@@ -1,6 +1,23 @@
 import { NextRequest, NextResponse } from "next/server";
 import openDB from "@/db";
 
+export async function GET(req: NextRequest) {
+  const db = await openDB();
+
+  try {
+    const feedbackData = await db.all(
+      "SELECT id as messageId, feedback FROM messages WHERE feedback IS NOT NULL"
+    );
+    return NextResponse.json(feedbackData);
+  } catch (error) {
+    console.error("Error fetching feedback:", error);
+    return NextResponse.json(
+      { error: "Failed to fetch feedback" },
+      { status: 500 }
+    );
+  }
+}
+
 export async function POST(req: NextRequest) {
   const db = await openDB();
   const { messageId, feedback } = await req.json();
