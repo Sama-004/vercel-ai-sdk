@@ -38,3 +38,7 @@ For users who have used the app before here's how it works
 
 Here's how the feedback works
 ![Feedback](assets/feedback.png)
+
+## Demo video
+
+https://github.com/Sama-004/vercel-ai-sdk/assets/70210929/002f34b5-1cef-4fd3-a9db-65de8d8e6a43
