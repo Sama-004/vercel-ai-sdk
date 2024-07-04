@@ -61,8 +61,7 @@ export async function GET(req: Request) {
   if (!sessionId) {
     console.log("inside if statement");
     console.log("No session ID found. Returning empty array.");
-    // return new Response(JSON.stringify([]), {
-    return new Response(JSON.stringify(null), {
+    return new Response(JSON.stringify([]), {
       headers: { "Content-Type": "application/json" },
     });
   }

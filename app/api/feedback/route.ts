@@ -6,7 +6,7 @@ export async function GET(req: NextRequest) {
 
   try {
     const feedbackData = await db.all(
-      "SELECT id as messageId, feedback FROM messages WHERE feedback IS NOT NULL"
+      "SELECT id as messageId, feedback FROM messages"
     );
     return NextResponse.json(feedbackData);
   } catch (error) {
